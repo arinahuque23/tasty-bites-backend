@@ -1,7 +1,5 @@
 const MenuItem = require("../models/MenuItemModel");
 
-// POST /api/menu
-
 exports.createMenuItem = async (req, res) => {
   try {
     const menuItem = new MenuItem(req.body);
@@ -12,12 +10,33 @@ exports.createMenuItem = async (req, res) => {
   }
 };
 
-// GET /api/menu
+
 exports.getAllMenuItems = async (req, res) => {
   try {
     const items = await MenuItem.find();
     res.status(200).json(items);
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+};
+
+
+export const updateMenuItems = async (req, res) => {
+    try {
+    const updated = await MenuItem.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.json(updated);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+export const deleteMenuItems = async (req, res) => {
+  try {
+    await MenuItem.findByIdAndDelete(req.params.id);
+    res.json({ message: "menu deleted" });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
   }
 };
