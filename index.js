@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const menuRoutes = require("./routes/menuRoutes");
 const userRoutes = require("./routes/userRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 dotenv.config();
 
@@ -14,7 +15,7 @@ app.use(express.json());
 
 app.use("/api/menu", menuRoutes);
 app.use("/api/user", userRoutes);
-
+app.use("/api/orders", orderRoutes);
 const PORT = process.env.PORT || 5000;
 
 mongoose
