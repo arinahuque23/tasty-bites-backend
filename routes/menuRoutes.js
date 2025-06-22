@@ -9,6 +9,7 @@ const {
 
 router.post("/", createMenuItem);
 router.get("/", getAllMenuItems);
-router.put("/", updateMenuItems);
-router.delete("/", deleteMenuItems);
+router.put("/:id", updateMenuItems);
+router.delete("/:id", deleteMenuItems);
+
 module.exports = router;

@@ -10,7 +10,6 @@ exports.createMenuItem = async (req, res) => {
   }
 };
 
-
 exports.getAllMenuItems = async (req, res) => {
   try {
     const items = await MenuItem.find();
@@ -20,9 +19,8 @@ exports.getAllMenuItems = async (req, res) => {
   }
 };
 
-
-export const updateMenuItems = async (req, res) => {
-    try {
+exports.updateMenuItems = async (req, res) => {
+  try {
     const updated = await MenuItem.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
@@ -32,10 +30,10 @@ export const updateMenuItems = async (req, res) => {
   }
 };
 
-export const deleteMenuItems = async (req, res) => {
+exports.deleteMenuItems = async (req, res) => {
   try {
     await MenuItem.findByIdAndDelete(req.params.id);
-    res.json({ message: "menu deleted" });
+    res.json({ message: "Menu deleted successfully" });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
