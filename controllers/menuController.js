@@ -38,6 +38,16 @@ exports.updateMenuItem = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+// controllers/menuController.js
+exports.getMenuItemById = async (req, res) => {
+  try {
+    const item = await MenuItem.findById(req.params.id);
+    if (!item) return res.status(404).json({ error: "Item not found" });
+    res.json(item);
+  } catch (error) {
+    res.status(400).json({ error: "Invalid ID" });
+  }
+};
 
 // Delete item
 exports.deleteMenuItem = async (req, res) => {
